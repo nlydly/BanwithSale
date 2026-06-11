@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-4">Create New Account</h2>
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger">@ViewBag.Error</div>
+                }
+                <form asp-action="Register" asp-controller="Account" method="post">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card border-success h-100" onclick="selectRole('Buyer')" id="buyerCard" style="cursor:pointer">
+                                <div class="card-body text-center">
+                                    <h4>👤 Buyer</h4>
+                                    <p>I want to buy bandwidth</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border-primary h-100" onclick="selectRole('Seller')" id="sellerCard" style="cursor:pointer">
+                                <div class="card-body text-center">
+                                    <h4>💰 Seller</h4>
+                                    <p>I want to sell bandwidth</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="role" id="selectedRole" />
+                    <div class="mb-3">
+                        <label>Full Name</label>
+                        <input type="text" name="fullName" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" required />
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function selectRole(role)
+    {
+        document.getElementById("selectedRole").value = role;
+        document.getElementById("buyerCard").classList.toggle("bg-light", role === "Buyer");
+        document.getElementById("sellerCard").classList.toggle("bg-light", role === "Seller");
+    }
+</script>

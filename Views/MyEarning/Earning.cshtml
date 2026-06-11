@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Earnings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-4">
+    <h2 class="mb-4">Earnings Dashboard - @ViewBag.UserName</h2>
+
+    <div class="row">
+
+        <!-- Earnings This Month -->
+        <div class="col-lg-5 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold">EARNINGS THIS MONTH</h5>
+                    <h2 class="text-primary fw-bold">Ks @ViewBag.ThisMonthEarnings</h2>
+                    <div class="row mt-3 text-center">
+                        <div class="col-6">
+                            <small class="text-muted">LAST WEEK</small>
+                            <h5>Ks 15,000</h5>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">TOTAL EARNED</small>
+                            <h5>Ks @ViewBag.TotalEarnings</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Sales -->
+        <div class="col-lg-7 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold">RECENT SALES</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Amount (Ks)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.RecentSales != null && ViewBag.RecentSales.Count > 0)
+                            {
+                                foreach (var sale in ViewBag.RecentSales)
+                                {
+                                    <tr>
+                                        <td>@sale.TransactionDate.ToShortDateString()</td>
+                                        <td>@sale.Description</td>
+                                        <td class="text-success fw-bold">@sale.Amount</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted">No recent sales yet.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="/Seller/Index" class="btn btn-secondary">← Back to Seller Dashboard</a>
+    </div>
+</div>

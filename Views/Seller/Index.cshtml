@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Seller Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container py-4">
+    <h2 class="mb-4">Seller Dashboard</h2>
+    <h4>Welcome, @ViewBag.UserName 👋</h4>
+
+    <div class="row mt-4">
+        <!--Total Earnings-->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h5 class="text-muted">TOTAL EARNINGS</h5>
+                    <h3 class="text-success fw-bold">Ks @ViewBag.TotalEarnings</h3>
+                </div>
+            </div>
+        </div>
+        <!--This Month Earnings-->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h5 class="text-muted">THIS MONTH</h5>
+                    <h3 class="text-primary fw-bold">Ks @ViewBag.ThisMonthEarnings</h3>
+                </div>
+            </div>
+        </div>
+        <!-- Bandwidth Sold -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h5 class="text-muted">BANDWIDTH SOLD</h5>
+                    <h3 class="fw-bold">@ViewBag.UsedGB GB</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <h5>Recent Activity</h5>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Date</th>
+                    <th>Buyer</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Today</td>
+                    <td>John Buyer</td>
+                    <td class="text-success">Ks 35,000</td>
+                </tr>
+                <tr>
+                    <td>Yesterday</td>
+                    <td>Nelly</td>
+                    <td class="text-success">Ks 15,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    @* <a href="/Account/Logout" class="btn btn-danger mt-4">Logout</a> *@
+</div>

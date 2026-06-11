@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Buyer Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-4">
+    <h2>Welcome, @ViewBag.UserName 👋</h2>
+    <p class="text-muted">Manage your bandwidth and active plans</p>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5>Total Spent</h5>
+                    <h3 class="text-primary">Ks 245,000</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5>Active Plans</h5>
+                    <h3 class="text-success">@(ViewBag.MyPlans?.Count ?? 0)</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5>Total Data Used</h5>
+                    <h3>487 GB</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*  <div class="mt-5">
+        <a href="/UserPlan/MyPlans" class="btn btn-primary btn-lg">View My Plans →</a>
+    </div> *@
+</div>

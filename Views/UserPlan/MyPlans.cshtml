@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "My Plans";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-4">
+    <h2>My Active Plans</h2>
+
+    @if (ViewBag.MyPlans != null && ViewBag.MyPlans.Count > 0)
+    {
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Plan Id</th>                   
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>IsActive</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var plan in ViewBag.MyPlans)
+                {
+                    <tr>
+                        <td>@plan.Id</td>
+                        <td>@plan.PlanId</td>
+                        <td>@plan.StartDate</td>
+                        <td>Ks @plan.EndDate</td>                       
+                        <td><span class="badge bg-success">IsActive</span></td>
+                        <td>
+                            <a href="/UserPlan/CancelPlan/@plan.Id" class="btn btn-danger btn-sm">Cancel</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            You don't have any active plans yet.
+           <a href="/UserPlan/AvailablePlans" class="alert-link">Browse Plans</a>
+        </div>
+    }
+</div>

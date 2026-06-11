@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-4">
+
+    <!-- Top Navigation -->
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item"><a class="nav-link active" href="#">HOME</a></li>
+        <li class="nav-item"><a  class ="nav-link" href="@Url.Action("MyPlans", "UserPlan")">MY PLAN</a> </li>
+        <li class="nav-item"><a class="nav-link" href ="@Url.Action(" Earning","MyEarning" )">EARNINGS</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">DEVICES</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">ACCOUNT</a></li>
+    </ul>
+    <div class="row">
+        <!-- Active Plan Card -->
+        <div class="col-lg-7 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="fw-bold">ACTIVE PLAN</h5>
+                        <span class="badge bg-success">Monthly Pro</span>
+                    </div>
+                    <h4 class="mt-2">500GB Plan</h4>
+
+                    <div class="progress mt-3" style="height: 12px;">
+                        <div class="progress-bar bg-primary" style="width: 50%;"></div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-1">
+                        <small>250GB used</small>
+                        <small>of 500GB total</small>
+                    </div>
+                    <small class="text-muted">Renews in 12 days</small>
+                </div>
+            </div>
+        </div>
+        <!-- Earnings Summary -->
+        <div class="col-lg-5 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold">EARNINGS THIS MONTH</h5>
+                    <h2 class="text-primary fw-bold">300000 Kyats</h2>
+                    <div class="row text-center mt-3">
+                        <div class="col-6">
+                            <small class="text-muted">LAST WEEK</small>
+                            <h5>15000 Kyats</h5>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">TOTAL EARNED</small>
+                            <h5>50000 Kyats</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Current Sharing Status -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>CURRENT SHARING STATUS</h5>
+                    <div class="d-flex align-items-center gap-3 mt-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" checked style="transform: scale(1.5);">
+                        </div>
+                        <div>
+                            <h6 class="mb-0">ON</h6>
+                            <small class="text-success">Sharing Bandwidth</small>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <img src="https://via.placeholder.com/400x200?text=World+Map" class="img-fluid rounded" alt="Map">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Performance Overview -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5>PERFORMANCE OVERVIEW (Last 7 Days)</h5>
+                    <div class="mt-4 text-center">
+                        <!-- Simple Chart Placeholder -->
+                        <img src="https://via.placeholder.com/500x250?text=Performance+Line+Chart"
+                             class="img-fluid rounded" alt="Chart">
+                    </div>
+                    <div class="row text-center mt-4">
+                        <div class="col-6">
+                            <h6>AVG DAILY SHARE</h6>
+                            <h4 class="text-primary">8.5 GB</h4>
+                        </div>
+                        <div class="col-6">
+                            <h6>AVG SPEED</h6>
+                            <h4 class="text-primary">45 Mbps</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @* </div>
+        <a href="/Plan/MyPlans" class="btn btn-info">My Plans</a>
+    </div> *@
+
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+           
+    
+    
