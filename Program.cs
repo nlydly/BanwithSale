@@ -4,10 +4,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Database Configuration
-    builder.Services.AddDbContext<AppDbContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// MVC + Session
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 
@@ -22,15 +21,24 @@ app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
-// Safe Database Creation
+// === Safer Database Initialization ===
 if (app.Environment.IsDevelopment())
 {
-    using (var scope = app.Services.CreateScope())
+    try
     {
-        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        db.Database.EnsureCreated();
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            db.Database.EnsureCreated();   // Keep this, but wrap in try-catch
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("⚠️ Database Initialization Warning: " + ex.Message);
+        // Don't crash the app
     }
 }
+
 app.Run();

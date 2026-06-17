@@ -2,7 +2,6 @@
 using BanwithSale.Data;
 using BanwithSale.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace BanwithSale.Controllers
 {
@@ -30,10 +29,10 @@ namespace BanwithSale.Controllers
                 .Select(up => new
                 {
                     up.Id,
-                    PlanName = up.Plan.PlanName,
-                    SpeedMbps = up.Plan.SpeedMbps,
-                    DataGB = up.Plan.DataGB,
-                    Price = up.Plan.Price,
+                    //PlanName = up.Plan.PlanName,
+                    //SpeedMbps = up.Plan.SpeedMbps,
+                    //DataGB = up.Plan.DataGB,
+                    //Price = up.Plan.Price,
                     up.StartDate,
                     up.EndDate,
                     up.IsActive
@@ -70,7 +69,7 @@ namespace BanwithSale.Controllers
                 IsActive = true
             };
 
-            _context.MyPlans.Add(userPlan);
+            _context.UserPlans.Add(userPlan);
             _context.SaveChanges();
 
             TempData["Success"] = "Plan purchased successfully!";
@@ -80,7 +79,7 @@ namespace BanwithSale.Controllers
         // Cancel Plan
         public IActionResult CancelPlan(int id)
         {
-            var userPlan = _context.MyPlans.Find(id);
+            var userPlan = _context.Plans.Find(id);
             if (userPlan != null)
             {
                 userPlan.IsActive = false;
