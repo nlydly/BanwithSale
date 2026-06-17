@@ -2,62 +2,71 @@
     ViewData["Title"] = "Seller Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="container py-4">
-    <h2 class="mb-4">Seller Dashboard</h2>
+    <h2>Seller Dashboard</h2>
     <h4>Welcome, @ViewBag.UserName 👋</h4>
 
     <div class="row mt-4">
-        <!--Total Earnings-->
-        <div class="col-md-4 mb-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-body text-center">
-                    <h5 class="text-muted">TOTAL EARNINGS</h5>
-                    <h3 class="text-success fw-bold">Ks @ViewBag.TotalEarnings</h3>
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5>TOTAL EARNINGS</h5>
+                    <h3 class="text-success">Ks @ViewBag.TotalEarnings</h3>
                 </div>
             </div>
         </div>
-        <!--This Month Earnings-->
-        <div class="col-md-4 mb-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-body text-center">
-                    <h5 class="text-muted">THIS MONTH</h5>
-                    <h3 class="text-primary fw-bold">Ks @ViewBag.ThisMonthEarnings</h3>
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5>THIS MONTH</h5>
+                    <h3 class="text-primary">Ks @ViewBag.ThisMonthEarnings</h3>
                 </div>
             </div>
         </div>
-        <!-- Bandwidth Sold -->
-        <div class="col-md-4 mb-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-body text-center">
-                    <h5 class="text-muted">BANDWIDTH SOLD</h5>
-                    <h3 class="fw-bold">@ViewBag.UsedGB GB</h3>
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5>BANDWIDTH SOLD</h5>
+                    <h3>@ViewBag.BandwidthSold GB</h3>
                 </div>
             </div>
         </div>
     </div>
-    <div class="mt-5">
-        <h5>Recent Activity</h5>
-        <table class="table table-bordered">
-            <thead class="table-light">
+
+    <!-- Recent Activity -->
+    <h5 class="mt-5 mb-3">Recent Activity</h5>
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Date</th>
+                <th>Buyer</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.RecentSales != null && ViewBag.RecentSales.Count > 0)
+            {
+                foreach (var sale in ViewBag.RecentSales)
+                {
+                    <tr>
+                        <td>@sale.TransactionDate.ToShortDateString()</td>
+                        <td>@sale.Description</td>
+                        <td class="text-success fw-bold">Ks @sale.Amount</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm">Edit</button>
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
                 <tr>
-                    <th>Date</th>
-                    <th>Buyer</th>
-                    <th>Amount</th>
+                    <td colspan="4" class="text-center text-muted">No recent sales yet.</td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Today</td>
-                    <td>John Buyer</td>
-                    <td class="text-success">Ks 35,000</td>
-                </tr>
-                <tr>
-                    <td>Yesterday</td>
-                    <td>Nelly</td>
-                    <td class="text-success">Ks 15,000</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    @* <a href="/Account/Logout" class="btn btn-danger mt-4">Logout</a> *@
+            }
+        </tbody>
+    </table>
 </div>

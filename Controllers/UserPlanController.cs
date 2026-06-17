@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BanwithSale.Data;
 using BanwithSale.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace BanwithSale.Controllers
 {
@@ -13,24 +15,25 @@ namespace BanwithSale.Controllers
             _context = context;
         }
 
-        // READ - Buyer sees their purchased plans
+        // READ - My Plans (Buyer Dashboard)
         public IActionResult MyPlans()
         {
             var userIdStr = HttpContext.Session.GetString("UserId");
             if (string.IsNullOrEmpty(userIdStr))
-                return RedirectToAction("MyPlans","UserPlan");
+                return RedirectToAction("Login", "Account");
 
             int userId = int.Parse(userIdStr);
 
             var myPlans = _context.UserPlans
+                .Include(up => up.Plan)           // Must include the related Plan
                 .Where(up => up.UserId == userId && up.IsActive)
                 .Select(up => new
                 {
                     up.Id,
-                    up.PlanId,
-                    //up.Plan.SpeedMbps,
-                    //up.Plan.DataGB,
-                    //up.Plan.Price,
+                    PlanName = up.Plan.PlanName,
+                    SpeedMbps = up.Plan.SpeedMbps,
+                    DataGB = up.Plan.DataGB,
+                    Price = up.Plan.Price,
                     up.StartDate,
                     up.EndDate,
                     up.IsActive
@@ -38,9 +41,17 @@ namespace BanwithSale.Controllers
                 .ToList();
 
             ViewBag.MyPlans = myPlans;
-            return View();
+            return View("~/Views/UserPlan/MyPlans.cshtml");
         }
-        // CREATE - Buy a Plan
+
+        // Available Plans for Buying
+        public IActionResult AvailablePlans()
+        {
+            var plans = _context.Plans.Where(p => p.IsActive).ToList();
+            return View(plans);
+        }
+
+        // Buy a Plan
         [HttpPost]
         public IActionResult BuyPlan(int planId)
         {
@@ -50,36 +61,26 @@ namespace BanwithSale.Controllers
 
             int userId = int.Parse(userIdStr);
 
-            var plan = _context.UserPlans.Find(planId);
-            if (plan == null) return BadRequest();
-
             var userPlan = new UserPlan
             {
                 UserId = userId,
                 PlanId = planId,
                 StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(30),   // 30 days validity
+                EndDate = DateTime.Now.AddDays(30),
                 IsActive = true
             };
 
-            _context.UserPlans.Add(userPlan);
+            _context.MyPlans.Add(userPlan);
             _context.SaveChanges();
 
             TempData["Success"] = "Plan purchased successfully!";
             return RedirectToAction("MyPlans");
         }
 
-        // READ - All Active Plans (for Buyer to choose)
-        public IActionResult AvailablePlans()
-        {
-            var plans = _context.UserPlans.Where(p => p.IsActive).ToList();
-            return View(plans);
-        }
-
-        // DELETE - Cancel / Deactivate Plan
+        // Cancel Plan
         public IActionResult CancelPlan(int id)
         {
-            var userPlan = _context.UserPlans.Find(id);
+            var userPlan = _context.MyPlans.Find(id);
             if (userPlan != null)
             {
                 userPlan.IsActive = false;

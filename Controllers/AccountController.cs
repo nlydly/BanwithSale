@@ -74,7 +74,7 @@ namespace BanwithSale.Controllers
                 Role = role,
                 TotalEarning = 0,
                 ThisMonthsEarning = 0,
-                ActivePlanGB = 500,
+                ActivePlanGB = 348,
                 UseGB = 0
             };
 
@@ -87,7 +87,7 @@ namespace BanwithSale.Controllers
             HttpContext.Session.SetString("UserName", newUser.FullName);
             HttpContext.Session.SetString("UserRole", newUser.Role);
 
-            // Redirect based on role
+            // redirect base on role
             if (role == "Seller")
                 return RedirectToAction("Index", "Seller");
             else
