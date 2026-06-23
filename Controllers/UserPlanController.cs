@@ -29,10 +29,10 @@ namespace BanwithSale.Controllers
                 .Select(up => new
                 {
                     up.Id,
-                    //PlanName = up.Plan.PlanName,
-                    //SpeedMbps = up.Plan.SpeedMbps,
-                    //DataGB = up.Plan.DataGB,
-                    //Price = up.Plan.Price,
+                    PlanName = up.Plan.PlanName,
+                    SpeedMbps = up.Plan.SpeedMbps,
+                    DataGB = up.Plan.DataGB,
+                    Price = up.Plan.Price,
                     up.StartDate,
                     up.EndDate,
                     up.IsActive
@@ -79,7 +79,7 @@ namespace BanwithSale.Controllers
         // Cancel Plan
         public IActionResult CancelPlan(int id)
         {
-            var userPlan = _context.Plans.Find(id);
+            var userPlan = _context.UserPlans.Find(id);
             if (userPlan != null)
             {
                 userPlan.IsActive = false;

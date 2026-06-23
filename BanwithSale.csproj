@@ -14,6 +14,18 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Components.SdkAnalyzers">
+      <HintPath>C:\Program Files\dotnet\sdk\10.0.301\Sdks\Microsoft.NET.Sdk.Web\analyzers\cs\Microsoft.AspNetCore.Components.SdkAnalyzers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Analyzers">
+      <HintPath>C:\Program Files\dotnet\sdk\10.0.301\Sdks\Microsoft.NET.Sdk.Web\analyzers\cs\Microsoft.AspNetCore.Mvc.Analyzers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Api.Analyzers">
+      <HintPath>C:\Program Files\dotnet\sdk\10.0.301\Sdks\Microsoft.NET.Sdk.Web\analyzers\cs\Microsoft.AspNetCore.Mvc.Api.Analyzers.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 	
 	
 	

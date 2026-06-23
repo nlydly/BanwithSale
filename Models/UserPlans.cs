@@ -9,7 +9,7 @@ namespace BanwithSale.Models
         public User User { get; set; } = null!;
 
         public int PlanId { get; set; }
-        public UserPlan Plan { get; set; } = null!;
+        public Plan Plan { get; set; } = null!;
 
         public DateTime StartDate { get; set; } = DateTime.Now;
         public DateTime EndDate { get; set; }
