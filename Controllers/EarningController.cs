@@ -33,11 +33,11 @@ namespace BanwithSale.Controllers
             ViewBag.ThisMonthEarnings = seller?.ThisMonthsEarning ?? 0;
 
             //// Get recent transactions (Sales)
-            //ViewBag.RecentSales = _context.Transactions
-            //    .Where(t => t.UserId == userId && t.Type == "Sale")
-            //    .OrderByDescending(t => t.TransactionDate)
-            //    .Take(10)
-            //    .ToList();
+            ViewBag.RecentSales = _context.Transactions
+                .Where(t => t.UserId == userId && t.Type == "Sale")
+                .OrderByDescending(t => t.TransactionDate)
+                .Take(10)
+                .ToList();
 
             return View();
         }

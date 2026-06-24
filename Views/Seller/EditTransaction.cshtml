@@ -1,0 +1,39 @@
+﻿@model BanwithSale.Models.Transaction
+@{
+    ViewData["Title"] = "EarningTransaction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2>Edit Transaction</h2>
+
+            <div class="card">
+                <div class="card-body">
+                    <form asp-controller="Seller" asp-action="EarningController" method="post">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <input type="text" asp-for="Description" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Amount (Kyats)</label>
+                            <input type="number" asp-for="Amount" class="form-control" step="0.01" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Date</label>
+                            <input type="date" asp-for="TransactionDate" class="form-control" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a href="/Seller/Index" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

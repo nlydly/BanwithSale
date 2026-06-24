@@ -6,12 +6,12 @@ namespace BanwithSale.Controllers
 {
     public class DashBoardContoller : Controller
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> users { get; set; }
 
         public IActionResult Index()
         {
             return View();
-        }
+        }  
 
 
        
