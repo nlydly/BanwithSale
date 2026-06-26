@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BanwithSale.Models;
-using System.Globalization;
-using BanwithSale.Controllers;
 
 namespace BanwithSale.Data
 {
@@ -9,10 +7,10 @@ namespace BanwithSale.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        
         public DbSet<User> Users { get; set; }
         public DbSet<Plan> Plans { get; set; }
-        public DbSet<UserPlan> UserPlans { get; set; }     
-        public DbSet<EarningsController> Transactions { get; set; }
+        public DbSet<UserPlan> UserPlans { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+
     }
 }

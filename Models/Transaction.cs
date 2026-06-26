@@ -7,7 +7,7 @@ namespace BanwithSale.Models
         [Key]                                    
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public int UserId { get; set; } = 1;
 
         public decimal Amount { get; set; }
         public string Type { get; set; } = string.Empty;     

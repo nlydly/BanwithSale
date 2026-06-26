@@ -3,8 +3,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 <div class="container py-4">
     <h2>Seller Dashboard</h2>
     <h4>Welcome, @ViewBag.UserName 👋</h4>
@@ -29,8 +27,8 @@
         <div class="col-md-4">
             <div class="card shadow-sm text-center">
                 <div class="card-body">
-                    <h5>BANDWIDTH SOLD</h5>
-                    <h3>@ViewBag.BandwidthSold GB</h3>
+                    <h5>ActivePlanGB</h5>
+                    <h3 class="text-danger">@ViewBag.ActivePlanGB</h3>
                 </div>
             </div>
         </div>
@@ -90,15 +88,20 @@
                     <td>@item.Description</td>
                     <td class="text-success">Ks @item.Amount</td>
                     <td>
-                        <a href="/Seller/EditTransaction/@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-controller="Seller" asp-action="CreateTransaction" class="btn btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> Add New Transaction
+                        </a>
+
+                        <a href="/Seller/EditTransaction/@item.Id" class="btn btn-primary btn-sm">Edit</a>
                         <a href="/Seller/DeleteTransaction/@item.Id"
                            class="btn btn-danger btn-sm"
                            onclick="return confirm('Are you sure you want to delete this record?')">
                             Delete
                         </a>
+
                     </td>
 
-                    <td>
+                  @*   <td>
                         <a asp-controller="EarningControllers"
                            asp-action="Edit"
                            asp-route-id="Id"
@@ -109,9 +112,7 @@
                            asp-route-id="Id"
                            class="btn btn-danger btn-sm"
                            onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
-                    </td>
-
-
+                    </td> *@
 
                 </tr>
             }
